@@ -1,7 +1,5 @@
-#include <iostream>
 #include <fstream>
 #include <string>
-#include <cstring>
 #include "secuencia.hpp"
 
 using namespace std;
@@ -11,31 +9,31 @@ int main() {
     entrada.open("secuencias-nucleotidos.txt", ios::in);
 
     int l;
-    entrada >> l;
-
-    char* nucleotidos = new char[l];
-    entrada >> nucleotidos;
-
+    char* nucleotidos = new char[l + 1];
     int k;
+
+    entrada >> l;
+    entrada >> nucleotidos;
     entrada >> k;
+
+    ofstream salida("secuencias-reconstruidas.txt");
 
     int m;
     string instruccion;
-
     int pos;
     char nucleotido;
-
     char* reconstruida;
-    unsigned int largo;
 
-    ofstream salida("secuencias-reconstruidas.txt");
+    // Edita la base desde 0, k veces
     for (int i = 0; i < k; i++) {
         secuencia base(nucleotidos, l);
         entrada >> m;
 
+        // Ejecuta los m argumentos dados
         for (int i = 0; i < m; i++) {
             entrada >> instruccion;
             entrada >> pos;
+
             if (instruccion == "INSERTAR") {
                 entrada >> nucleotido;
                 base.insertar(pos, nucleotido);
@@ -49,8 +47,8 @@ int main() {
             }
         }
 
-        reconstruida = base.getSecuencia(largo);
-        salida << reconstruida << "\n";
+        reconstruida = base.getSecuencia();
+        salida << reconstruida << endl;
         delete[] reconstruida;
     }
 
