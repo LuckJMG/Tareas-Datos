@@ -1,19 +1,7 @@
 #include <iostream>
-#include <list>
+#include "Class Bin.cpp"
 
 using namespace std;
-
-struct tNodoArbolBin{
-    int info;
-    tNodoArbolBin* izq;
-    tNodoArbolBin* der;
-};
-
-class tABB {
-    tNodoArbolBin *raiz;
-    int nElems;
-};
-
 
 int main(){
     tABB::tABB.insert(3);
