@@ -119,6 +119,7 @@ void secuencia::borrar(unsigned int position) {
     if (position >= size || position < 0) return;
 
     cur = head;
+    size--;
 
     // Caso inicio de la lista
     if (position == 0) {
@@ -143,7 +144,6 @@ void secuencia::borrar(unsigned int position) {
     cur->next = tmp->next;
     delete tmp;
 
-    size--;
 }
 
 /*****
