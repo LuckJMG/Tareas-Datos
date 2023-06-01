@@ -10,7 +10,6 @@ class tABB {
 private:
     tNodoArbolBin *raiz;
     int nElems;
-    int encendidos;
 public:
     tABB();
     ~tABB();
@@ -31,18 +30,6 @@ tABB::tABB() {
 }
 
 /*****
-* tABB::~tABB
-******
-* Destructor del TDA tABB, elimina todos los nodos antes 
-* de borrar la variable.
-*****/
-tABB::~tABB() {
-    clear(raiz);
-    raiz = NULL;
-    nElems = 0;
-}
-
-/*****
 * void clear
 ******
 * Ayuda al destructor a limpiar los nodos del TDA tABB.
@@ -55,6 +42,39 @@ void clear(tNodoArbolBin* nodo) {
     clear(nodo->izq);
     clear(nodo->der);
     delete nodo;
+}
+
+/*****
+* tABB::~tABB
+******
+* Destructor del TDA tABB, elimina todos los nodos antes
+* de borrar la variable.
+*****/
+tABB::~tABB() {
+    clear(raiz);
+    raiz = NULL;
+    nElems = 0;
+}
+
+/*****
+* bool findHelp
+******
+* Función de ayuda de tABB::find, la cual busca el elemento
+* dado en el nodo entregado y sus hijos.
+******
+* Input:
+* tNodoArbolBin* nodo : Nodo actual de la busqueda.
+* tElem x : Elemento a encontrar en el arbol.
+******
+* Returns:
+* bool, Si encuentra el elemento devuelve true, en caso contrario false.
+*****/
+bool findHelp(tNodoArbolBin* nodo, tElem x) {
+    if (nodo == NULL) return false;
+    if (nodo->info == x) return true;
+
+    if (x < nodo->info) return findHelp(nodo->izq, x);
+    else return findHelp(nodo->der, x);
 }
 
 /*****
@@ -74,40 +94,6 @@ bool tABB::find(tElem x) {
 }
 
 /*****
-* bool findHelp
-******
-* Función de ayuda de tABB::find, la cual busca el elemento 
-* dado en el nodo entregado y sus hijos.
-******
-* Input:
-* tNodoArbolBin* nodo : Nodo actual de la busqueda.
-* tElem x : Elemento a encontrar en el arbol.
-******
-* Returns:
-* bool, Si encuentra el elemento devuelve true, en caso contrario false.
-*****/
-bool findHelp(tNodoArbolBin* nodo, tElem x) {
-    if (nodo == NULL) return false;
-    if (nodo->info == x) return true; 
-
-    if (x < nodo->info) return findHelp(nodo->izq, x);
-    else return findHelp(nodo->der, x);
-}
-
-/*****
-* void tABB::insert
-******
-* Inserta el elemnto dado en el arbol binario.
-******
-* Input:
-* tElem x : Elemnto a añadir al arbol.
-*****/
-void tABB::insert(tElem x) {
-    insertHelp(raiz, x);
-    nElems++;
-}
-
-/*****
 * void insertHelp
 ******
 * Función de ayuda para tABB::insert, el cual busca el nodo a insertar
@@ -118,11 +104,10 @@ void tABB::insert(tElem x) {
 * tElem x : Elemento a insertar en el arbol.
 *****/
 void insertHelp(tNodoArbolBin *nodo, tElem x) {
-    if (nodo == NULL) { // Caso arbol vacio
-        nodo = new tNodoArbolBin;
-        nodo->info = x;
+    if (x == nodo->info) {
+        return;
     }
-    else if (x >= nodo->info) {
+    else if (x > nodo->info) {
         if (nodo->der == NULL) {
             nodo->der = new tNodoArbolBin;
             nodo->der->info = x;
@@ -135,6 +120,25 @@ void insertHelp(tNodoArbolBin *nodo, tElem x) {
             nodo->izq->info = x;
         }
         else insertHelp(nodo->izq, x);
+    }
+}
+
+/*****
+* void tABB::insert
+******
+* Inserta el elemnto dado en el arbol binario.
+******
+* Input:
+* tElem x : Elemnto a añadir al arbol.
+*****/
+void tABB::insert(tElem x) {
+    nElems++;
+    if (raiz == NULL) {
+        raiz = new tNodoArbolBin;
+        raiz->info = x;
+    }
+    else {
+        insertHelp(raiz, x);
     }
 }
 
@@ -167,7 +171,7 @@ int tABB::lower_bound(tElem x){
 * int, Cantidad de postes encendidas.
 *****/
 int tABB::OnCount(){
-    return encendidos;
+    return nElems;
 }
 
 
