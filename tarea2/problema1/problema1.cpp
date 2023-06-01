@@ -9,12 +9,14 @@ int main() {
     entrada.open("secuencias-nucleotidos.txt", ios::in);
 
     int l;
-    char* nucleotidos = new char[l + 1];
-    int k;
-
     entrada >> l;
+
+    char* nucleotidos = new char[l + 1];
     entrada >> nucleotidos;
+
+    int k;
     entrada >> k;
+
 
     ofstream salida("secuencias-reconstruidas.txt");
 
