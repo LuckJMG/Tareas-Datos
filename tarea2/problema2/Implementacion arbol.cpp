@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(){
-    tABB::tABB.insert(3);
-    cout<<tABB::tABB.size()<<endl;
+    tABB arbol;
+    cout<<arbol.size()<<endl;
     return 0;
 }
