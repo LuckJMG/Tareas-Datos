@@ -1,0 +1,11 @@
+REGISTRAR user1 password1
+REGISTRAR user2 password2
+REGISTRAR user4 1234
+INICIAR_SESION user1 password
+INICIAR_SESION user2 password2
+ACTUALIZAR user1 password
+ACTUALIZAR user2 1234
+ACTUALIZAR user3 1234
+INICIAR_SESION user1 password
+REGISTRAR user2 password
+FINALIZAR

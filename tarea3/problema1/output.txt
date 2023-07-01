@@ -1,0 +1,10 @@
+Usuario registrado con exito
+Usuario registrado con exito
+La clave debe tener al menos 8 caracteres
+La clave ingresada no coincide
+Sesion iniciada con exito
+Clave actualizada con exito
+La clave debe tener al menos 8 caracteres
+El usuario no se encuentra registrado
+Sesion iniciada con exito
+El usuario ya se encuentra registrado

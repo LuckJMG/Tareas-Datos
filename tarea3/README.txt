@@ -9,6 +9,7 @@ Problema 1
 
     - Archivo principal es "problema1.cpp", las pruebas se hacen desde aquí.
     - Recibe los datos por la consola.
+    - El TDA se encuentra en el archivo "hashingCerrado.hpp", es un diccionario modificado para el.
 
 Problema 2
 
